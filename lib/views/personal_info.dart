@@ -34,9 +34,16 @@ class PersonalInfoScreen extends StatelessWidget {
                         textAlign: TextAlign.center,
                       ),
                     ),
-                    Text('sinh viên',
+                    Text('sinh viên \n'
+                        '17521018 17521100 \n\n',
                         style: TextStyle(color: Colors.grey),
                         textAlign: TextAlign.center),
+                    Text('Ứng dụng nền tảng android giúp theo dõi thông tin tổng quan covid-19 tại thời điểm hiện tại',
+                        style: Theme.of(context)
+                            .textTheme
+                            .subtitle1
+                            .copyWith(color: Theme.of(context).accentColor),
+                        textAlign: TextAlign.center)
                   ],
                 ),
               ),
@@ -46,7 +53,7 @@ class PersonalInfoScreen extends StatelessWidget {
                 children: <Widget>[
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[Text('Được làm bằng Flutter ')],
+                    children: <Widget>[Text('made by Flutter')],
                   ),
                 ],
               ),

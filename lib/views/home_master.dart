@@ -30,7 +30,7 @@ class _HomePageMasterState extends State<HomePageMaster> {
           style: TextStyle(color: Theme.of(context).accentColor),
         ),
         leading: IconButton(
-          icon: Icon(Icons.wb_incandescent),
+          icon: Icon(Icons.menu),
           color: Theme.of(context).accentColor,
           onPressed: () {
             setState(() {
@@ -76,7 +76,7 @@ class _HomePageMasterState extends State<HomePageMaster> {
                     color: Theme.of(context).accentColor,
                   ),
                   label: Text(
-                    'Thế giới',
+                    'Home',
                     style: TextStyle(
                       color: Theme.of(context).accentColor,
                     ),
