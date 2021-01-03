@@ -1,5 +1,11 @@
+import 'dart:convert';
+
+import '../global.dart';
+import '../global.dart';
+
 class Country {
   String country;
+  String flagUrl;
   int cases;
   int todayCases;
   int deaths;
@@ -11,20 +17,24 @@ class Country {
   int deathsPerOneMillion;
   int totalTests;
   int testsPerOneMillion;
+  void setFlagUrl(String flag) {
+    this.flagUrl = flag;
+  }
 
   Country(
       {this.country,
-        this.cases,
-        this.todayCases,
-        this.deaths,
-        this.todayDeaths,
-        this.recovered,
-        this.active,
-        this.critical,
-        this.casesPerOneMillion,
-        this.deathsPerOneMillion,
-        this.totalTests,
-        this.testsPerOneMillion});
+      this.flagUrl,
+      this.cases,
+      this.todayCases,
+      this.deaths,
+      this.todayDeaths,
+      this.recovered,
+      this.active,
+      this.critical,
+      this.casesPerOneMillion,
+      this.deathsPerOneMillion,
+      this.totalTests,
+      this.testsPerOneMillion});
 
   Country.fromJson(Map<String, dynamic> json) {
     country = json['country'];
@@ -39,6 +49,9 @@ class Country {
     deathsPerOneMillion = json['deathsPerOneMillion'];
     totalTests = json['totalTests'];
     testsPerOneMillion = json['testsPerOneMillion'];
+  }
+  Country.fromJsonUrl(Map<String, dynamic> json) {
+    flagUrl = json['flag'];
   }
 
   Map<String, dynamic> toJson() {
@@ -55,6 +68,7 @@ class Country {
     data['deathsPerOneMillion'] = this.deathsPerOneMillion;
     data['totalTests'] = this.totalTests;
     data['testsPerOneMillion'] = this.testsPerOneMillion;
+    data['flagUrl'] = this.flagUrl;
     return data;
   }
 }

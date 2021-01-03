@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:novel_covid_19/controllers/covid_api.dart';
 import 'package:novel_covid_19/custom_widgets/statistic_card.dart';
 import 'package:novel_covid_19/custom_widgets/theme_switch.dart';
 import 'package:novel_covid_19/custom_widgets/virus_loader.dart';
 import 'package:novel_covid_19/models/country_model.dart';
-
+import 'package:flutter_svg/flutter_svg.dart';
 import '../global.dart';
+//import 'dart:io' as io;
 
 class CountryDetailPage extends StatefulWidget {
   final String countryName;
@@ -25,7 +27,7 @@ class _CountryDetailPageState extends State<CountryDetailPage> {
   CovidApi api = CovidApi();
   double recoveryPercentage;
   bool _isSettingCountry = false;
-
+  String flagDir = "assets/flag/";
   @override
   void initState() {
     super.initState();
@@ -35,12 +37,24 @@ class _CountryDetailPageState extends State<CountryDetailPage> {
 
   @override
   Widget build(BuildContext context) {
+    final SvgPicture flag = SvgPicture.asset(
+      flagDir + widget.countryName + '.svg',
+      height: 48,
+    );
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          widget.countryName,
-          style: TextStyle(color: Theme.of(context).accentColor),
-        ),
+        title: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+          flag != null
+              ? flag
+              : SvgPicture.asset(
+                  flagDir + 'empty.svg',
+                  height: 48,
+                ),
+          Text(
+            '  ' + widget.countryName,
+            style: TextStyle(color: Theme.of(context).accentColor),
+          ),
+        ]),
         leading: GestureDetector(
           onTap: () => Navigator.of(context).pop(),
           child: Icon(
@@ -125,7 +139,7 @@ class _CountryDetailPageState extends State<CountryDetailPage> {
                       ),
                       StatisticCard(
                         color: Colors.red,
-                        text: '  \nCA NGHIỆM TRỌNG  ',
+                        text: '  \nCA NGHIÊM TRỌNG  ',
                         icon: Icons.local_fire_department,
                         stats: _countryInfo.critical,
                       ),
@@ -147,7 +161,7 @@ class _CountryDetailPageState extends State<CountryDetailPage> {
                           elevation: 4.0,
                           child: ListTile(
                             leading: Icon(Icons.sentiment_very_dissatisfied),
-                            title: Text('phần trăm tử vong'),
+                            title: Text('Phần trăm tử vong'),
                             trailing: Text(
                               deathPercentage.toStringAsFixed(2) + ' %',
                               style: TextStyle(
@@ -163,7 +177,7 @@ class _CountryDetailPageState extends State<CountryDetailPage> {
                           elevation: 4.0,
                           child: ListTile(
                             leading: Icon(Icons.sentiment_very_satisfied),
-                            title: Text('phần trăm phục hồi'),
+                            title: Text('Phần trăm phục hồi'),
                             trailing: Text(
                               recoveryPercentage.toStringAsFixed(2) + ' %',
                               style: TextStyle(
@@ -192,15 +206,14 @@ class _CountryDetailPageState extends State<CountryDetailPage> {
     setState(() => _isLoading = true);
     try {
       var countryInfo = await api.getCountryByName(widget.countryName);
+
       deathPercentage = (countryInfo.deaths / countryInfo.cases) * 100;
       recoveryPercentage = (countryInfo.recovered / countryInfo.cases) * 100;
       activePercentage = 100 - (deathPercentage + recoveryPercentage);
 
-      print(deathPercentage);
-      print(recoveryPercentage);
-      print(activePercentage);
       setState(() => _countryInfo = countryInfo);
     } catch (ex) {
+      print(ex);
       setState(() => _countryInfo = null);
     } finally {
       setState(() => _isLoading = false);

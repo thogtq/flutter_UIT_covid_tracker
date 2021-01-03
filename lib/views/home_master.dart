@@ -45,72 +45,78 @@ class _HomePageMasterState extends State<HomePageMaster> {
       body: Row(
         children: [
           AnimatedCrossFade(
-            crossFadeState: _showNavigationRail
-                ? CrossFadeState.showSecond
-                : CrossFadeState.showFirst,
-            duration: Duration(milliseconds: 300),
-            firstChild: Container(),
-            secondChild: NavigationRail(
-              selectedIndex: _currentIndex,
-              onDestinationSelected: (int index) {
-                _currentIndex = index;
-                switch (index) {
-                  case 0:
-                    _currentAppBarTitle = 'Thế giới';
-                    break;
-                  case 1:
-                    _currentAppBarTitle = 'Quốc gia';
-                    break;
-                  case 2:
-                    _currentAppBarTitle = 'Thông tin';
-                    break;
-                }
-                setState(() {});
-              },
-              labelType: NavigationRailLabelType.selected,
-              destinations: [
-                NavigationRailDestination(
-                  icon: Icon(Icons.public),
-                  selectedIcon: Icon(
-                    Icons.public,
-                    color: Theme.of(context).accentColor,
-                  ),
-                  label: Text(
-                    'Home',
-                    style: TextStyle(
-                      color: Theme.of(context).accentColor,
+              crossFadeState: _showNavigationRail
+                  ? CrossFadeState.showSecond
+                  : CrossFadeState.showFirst,
+              duration: Duration(milliseconds: 300),
+              alignment: Alignment.topCenter,
+              firstChild: SizedBox(
+                height: 0,
+              ),
+              secondChild: SizedBox(
+                height: 800,
+                child: NavigationRail(
+                  selectedIndex: _currentIndex,
+                  onDestinationSelected: (int index) {
+                    setState(() {
+                      _currentIndex = index;
+                    });
+                    switch (index) {
+                      case 0:
+                        _currentAppBarTitle = 'Thế giới';
+                        break;
+                      case 1:
+                        _currentAppBarTitle = 'Quốc gia';
+                        break;
+                      case 2:
+                        _currentAppBarTitle = 'Thông tin';
+                        break;
+                    }
+                  },
+                  labelType: NavigationRailLabelType.selected,
+                  destinations: [
+                    NavigationRailDestination(
+                      icon: Icon(Icons.public),
+                      selectedIcon: Icon(
+                        Icons.public,
+                        color: Theme.of(context).accentColor,
+                      ),
+                      label: Text(
+                        'Home',
+                        style: TextStyle(
+                          color: Theme.of(context).accentColor,
+                        ),
+                      ),
                     ),
-                  ),
-                ),
-                NavigationRailDestination(
-                  icon: Icon(Icons.list),
-                  selectedIcon: Icon(
-                    Icons.list,
-                    color: Theme.of(context).accentColor,
-                  ),
-                  label: Text(
-                    'Quốc gia',
-                    style: TextStyle(
-                      color: Theme.of(context).accentColor,
+                    NavigationRailDestination(
+                      icon: Icon(Icons.list),
+                      selectedIcon: Icon(
+                        Icons.list,
+                        color: Theme.of(context).accentColor,
+                      ),
+                      label: Text(
+                        'Quốc gia',
+                        style: TextStyle(
+                          color: Theme.of(context).accentColor,
+                        ),
+                      ),
                     ),
-                  ),
-                ),
-                NavigationRailDestination(
-                  icon: Icon(Icons.info),
-                  selectedIcon: Icon(
-                    Icons.info,
-                    color: Theme.of(context).accentColor,
-                  ),
-                  label: Text(
-                    'Thông tin',
-                    style: TextStyle(
-                      color: Theme.of(context).accentColor,
+                    NavigationRailDestination(
+                      icon: Icon(Icons.info),
+                      selectedIcon: Icon(
+                        Icons.info,
+                        color: Theme.of(context).accentColor,
+                      ),
+                      label: Text(
+                        'Thông tin',
+                        style: TextStyle(
+                          color: Theme.of(context).accentColor,
+                        ),
+                      ),
                     ),
-                  ),
+                  ],
                 ),
-              ],
-            ),
-          ),
+              )),
           Expanded(child: _widgets.elementAt(_currentIndex)),
         ],
       ),

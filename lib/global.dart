@@ -16,6 +16,7 @@ abstract class UrlConstants {
   static const String baseUrl = 'https://coronavirus-19-api.herokuapp.com';
   static const String globalInfo = '$baseUrl/all';
   static const String allCountries = '$baseUrl/countries';
+  static const String countryCode = 'https://restcountries.eu/rest/v2/name';
 }
 
 abstract class SharedPreferencesKeys {
@@ -35,7 +36,8 @@ class MySharedPreferences {
 
   Future setHomeCountry(HomeCountry country) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setStringList(SharedPreferencesKeys.homeCountryDetails, <String>[
+    await prefs
+        .setStringList(SharedPreferencesKeys.homeCountryDetails, <String>[
       country.name,
       country.cases,
       country.deaths,

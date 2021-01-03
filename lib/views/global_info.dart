@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:novel_covid_19/controllers/covid_api.dart';
 import 'package:novel_covid_19/custom_widgets/statistic_card.dart';
 import 'package:novel_covid_19/custom_widgets/virus_loader.dart';
@@ -19,7 +20,7 @@ class _GlobalInfoPageState extends State<GlobalInfoPage> {
   bool _isLoading = false;
   CovidApi api = CovidApi();
   double recoveryPercentage;
-
+  String flagDir = "assets/flag/";
   HomeCountry _homeCountry;
 
   @override
@@ -40,11 +41,9 @@ class _GlobalInfoPageState extends State<GlobalInfoPage> {
                   children: <Widget>[
                     if (_homeCountry != null)
                       ListTile(
-                        leading: CircleAvatar(
-                          child: Icon(
-                            Icons.home,
-                            color: Theme.of(context).accentColor,
-                          ),
+                        leading: SvgPicture.asset(
+                          flagDir + _homeCountry.name + '.svg',
+                          height: 36,
                         ),
                         title: Text(_homeCountry.name),
                         subtitle: Text(
@@ -83,7 +82,7 @@ class _GlobalInfoPageState extends State<GlobalInfoPage> {
                         elevation: 4.0,
                         child: ListTile(
                           leading: Icon(Icons.sentiment_very_dissatisfied),
-                          title: Text('phần trăm tử vong'),
+                          title: Text('Phần trăm tử vong'),
                           trailing: Text(
                             deathPercentage.toStringAsFixed(2) + ' %',
                             style: TextStyle(
@@ -99,7 +98,7 @@ class _GlobalInfoPageState extends State<GlobalInfoPage> {
                         elevation: 4.0,
                         child: ListTile(
                           leading: Icon(Icons.sentiment_very_satisfied),
-                          title: Text('phần trăm hồi phục'),
+                          title: Text('Phần trăm hồi phục'),
                           trailing: Text(
                             recoveryPercentage.toStringAsFixed(2) + ' %',
                             style: TextStyle(
@@ -131,9 +130,6 @@ class _GlobalInfoPageState extends State<GlobalInfoPage> {
       recoveryPercentage = (stats.recovered / stats.cases) * 100;
       activePercentage = 100 - (deathPercentage + recoveryPercentage);
 
-      print(deathPercentage);
-      print(recoveryPercentage);
-      print(activePercentage);
       setState(() => _stats = stats);
     } catch (ex) {
       setState(() => _stats = null);

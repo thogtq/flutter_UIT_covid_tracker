@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:novel_covid_19/controllers/covid_api.dart';
 import 'package:novel_covid_19/custom_widgets/virus_loader.dart';
 import 'package:novel_covid_19/global.dart';
 import 'package:novel_covid_19/models/country_model.dart';
 import 'country_detail.dart';
+//import 'package:image_downloader/image_downloader.dart';
 
 class CountryListPage extends StatefulWidget {
   @override
@@ -11,6 +13,7 @@ class CountryListPage extends StatefulWidget {
 }
 
 class _CountryListPageState extends State<CountryListPage> {
+  String flagDir = "assets/flag/";
   bool _isLoading = false;
   CovidApi api = CovidApi();
   var items = List<Country>();
@@ -92,6 +95,10 @@ class _CountryListPageState extends State<CountryListPage> {
                             child: Card(
                               elevation: 4.0,
                               child: ListTile(
+                                leading: SvgPicture.asset(
+                                  flagDir + country.country + '.svg',
+                                  height: 36,
+                                ),
                                 onTap: () {
                                   _controller.clear();
                                   filterSearchResults('');
@@ -144,6 +151,19 @@ class _CountryListPageState extends State<CountryListPage> {
       setState(() => _isLoading = true);
       var list = await mySharedPreferences.fetchHomeCountry();
       var countries = await api.getAllCountriesInfo();
+
+      //Loop countries to get flag and download, rename to country name
+      //Use with ImageDownloader lib
+      /*     for (var v in countries) {
+        var flag = await api.getFlagUrl(v.country);
+        if (flag != null) {
+          await ImageDownloader.downloadImage(flag,
+              destination: AndroidDestinationType.custom(directory: "flag")
+                ..inExternalFilesDir()
+                ..subDirectory("/${v.country}.svg"));
+        }
+      }*/
+
       setState(() {
         _countries = countries;
         items.addAll(_countries);
@@ -156,7 +176,8 @@ class _CountryListPageState extends State<CountryListPage> {
             );
           });
       });
-    } catch (ex) {
+    } catch (ex, s) {
+      print(ex.toString() + s.toString());
       setState(() => _countries = null);
     } finally {
       setState(() => _isLoading = false);
