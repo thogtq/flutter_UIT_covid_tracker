@@ -34,7 +34,7 @@ class CovidApi {
       listJson = jsonDecode(response);
       mapJson = listJson[0];
       flag = mapJson['flag'];
-    } catch (Ex, s) {
+    } catch (Ex) {
       return null;
     } finally {}
     return flag;

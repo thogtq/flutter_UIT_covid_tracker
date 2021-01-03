@@ -56,6 +56,7 @@ class _HomePageMasterState extends State<HomePageMaster> {
               secondChild: SizedBox(
                 height: 800,
                 child: NavigationRail(
+                  labelType: NavigationRailLabelType.all,
                   selectedIndex: _currentIndex,
                   onDestinationSelected: (int index) {
                     setState(() {
@@ -73,7 +74,6 @@ class _HomePageMasterState extends State<HomePageMaster> {
                         break;
                     }
                   },
-                  labelType: NavigationRailLabelType.selected,
                   destinations: [
                     NavigationRailDestination(
                       icon: Icon(Icons.public),

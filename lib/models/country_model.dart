@@ -1,8 +1,3 @@
-import 'dart:convert';
-
-import '../global.dart';
-import '../global.dart';
-
 class Country {
   String country;
   String flagUrl;
