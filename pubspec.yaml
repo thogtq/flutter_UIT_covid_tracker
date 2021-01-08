@@ -23,6 +23,7 @@ dependencies:
   provider: ^4.3.1
   shared_preferences: ^0.5.8
   flutter_svg: ^0.19.2+1
+  webview_flutter: ^1.0.7
   #image_downloader: ^0.20.1
 
   # The following adds the Cupertino Icons font to your application.
@@ -56,6 +57,7 @@ flutter:
     - assets/
     - assets/icon/
     - assets/flag/
+    - assets/image/
   #  - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

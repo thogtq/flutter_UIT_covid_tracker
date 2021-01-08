@@ -24,7 +24,7 @@ class PersonalInfoScreen extends StatelessWidget {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(top: 8.0),
+                      padding: const EdgeInsets.only(top: 8.0, bottom: 8),
                       child: Text(
                         'UIT learning',
                         style: Theme.of(context)
@@ -34,16 +34,22 @@ class PersonalInfoScreen extends StatelessWidget {
                         textAlign: TextAlign.center,
                       ),
                     ),
-                    Text('sinh viên \n'
-                        '17521018 17521100 \n\n',
-                        style: TextStyle(color: Colors.grey),
+                    Text(
+                        'Thành viên nhóm \n'
+                        'Trần Nhật Tân - 17521018\nTrần Quốc Thống - 17521100\n',
+                        style: TextStyle(
+                            color: Theme.of(context).accentColor, fontSize: 16),
                         textAlign: TextAlign.center),
-                    Text('Ứng dụng nền tảng android giúp theo dõi thông tin tổng quan covid-19 tại thời điểm hiện tại',
-                        style: Theme.of(context)
-                            .textTheme
-                            .subtitle1
-                            .copyWith(color: Theme.of(context).accentColor),
-                        textAlign: TextAlign.center)
+                    Padding(
+                      padding: const EdgeInsets.only(left: 20, right: 20),
+                      child: Text(
+                          'Ứng dụng giúp theo dõi thông tin tổng quan covid-19 tại thời điểm hiện tại',
+                          style: Theme.of(context)
+                              .textTheme
+                              .subtitle1
+                              .copyWith(color: Theme.of(context).accentColor),
+                          textAlign: TextAlign.center),
+                    ),
                   ],
                 ),
               ),

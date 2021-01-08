@@ -58,6 +58,24 @@ class _GlobalInfoPageState extends State<GlobalInfoPage> {
                           ),
                         ),
                       ),
+                    ListTile(
+                      leading: SvgPicture.asset(
+                        flagDir + 'World.svg',
+                        height: 36,
+                      ),
+                      title: Text(
+                        "World",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 24),
+                      ),
+                      onTap: () => Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => CountryDetailPage(
+                            countryName: "World",
+                          ),
+                        ),
+                      ),
+                    ),
                     StatisticCard(
                       color: Colors.orange,
                       text: '  \n SỐ CA NHIỄM   ',
