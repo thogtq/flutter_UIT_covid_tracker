@@ -6,7 +6,7 @@
 
 ## 4. Backend/Database/Diagram
 - App architecture diagram
-[logo]: https://prnt.sc/wnj77j "Logo Title Text 2"
+![alt text](https://github.com/tantran17521018/FLutter_covid_tracker_medium/blob/master/readme_img/Screenshot_11.png)
 ## 5. Tác giả
 Trần Nhật Tân - UX/UI Design
 Trần Quốc Thống - Backend Developer
