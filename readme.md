@@ -6,7 +6,7 @@
 
 ## 4. Backend/Database/Diagram
 - App architecture diagram
-![alt text](https://prnt.sc/wnj77j "App architecture diagram")
+[logo]: https://prnt.sc/wnj77j "Logo Title Text 2"
 ## 5. Tác giả
 Trần Nhật Tân - UX/UI Design
 Trần Quốc Thống - Backend Developer
