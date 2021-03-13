@@ -1,4 +1,6 @@
-## I. Chức năng
+# Flutter UIT Covid Tracker
+<img src="https://i.imgur.com/4eR1s40.png" width="150"> <img src="https://i.imgur.com/qI7APyT.png" width="150"> <img src="https://i.imgur.com/lMD9svT.png" width="150"> <img src="https://i.imgur.com/Jpuj8Tm.png" width="150"> <img src="https://i.imgur.com/l5tODBa.png" width="150"> <img src="https://i.imgur.com/g75V2uS.png" width="150">
+## I. Chức năng 
 1.	Chức năng xem thông tin tổng quan
 - Tóm tắt : Chức năng ở màn hình chính của ứng dụng, khi vừa mở ứng dụng. Có nhiệm vụ hiển thị thông tin tổng quan và số liệu về covid chung trên toàn cầu. Ngoài ra còn hiển thị quốc gia mặc định được chọn nếu có.
 2.	Chức năng tìm kiếm quốc gia
